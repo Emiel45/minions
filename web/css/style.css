@@ -1,0 +1,32 @@
+*:not(input) {
+    -moz-user-select: none;
+    -webkit-user-select: none;
+}
+* {
+    cursor: default;
+}
+body {
+    background-color: #eee;
+}
+#screen {
+    background-color: #fff;
+    position: absolute;
+    width: 1280px;
+    height: 720px;
+    left: 50%;
+    top: 50%;
+    margin: -360px 0 0 -640px;
+    box-shadow: 0 0 1px #ccc;
+}
+#info {
+    background-color: #fff;
+    position: absolute;
+    margin: 24px;
+    border-radius: 8px;
+    border: #aaaaaa solid 1px;
+    width: 480px;
+    height: 320px;
+    display: none;
+    padding: 0px 12px;
+    overflow: hidden;
+}
