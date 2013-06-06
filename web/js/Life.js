@@ -10,7 +10,7 @@ $class(
         this.info.draggable();
         this.info.resizable();
 
-        this.infoText = $('<pre />')
+        this.infoText = $('<pre />').addClass('scrollable');
         this.info.append(this.infoText);
 
         this.selectedMinion = undefined;
@@ -37,11 +37,13 @@ $class(
     },
 
     function init() {
-        for(var i = 0; i < 50; i++) {
+        for(var i = 0; i < 100; i++) {
             this.food[i] = new Food();
             this.food[i].position.random(this.canvas.width, this.canvas.height).floor();
             console.log(this.food[i]);
         }
+
+        this.minions.push(new Minion());
 
         this.registerEvent(this.canvas, this.onMouseDown);
         this.registerEvent(document,    this.onMouseMove);
@@ -91,11 +93,14 @@ $class(
             this.info.show();
 
             var debugText = "";
-            var properties = Object.keys(minion);
-            for(var i in properties) {
-                var property = properties[i];
-                debugText += property + ": " + minion[property] + "\n";
-            }
+
+            // var properties = Object.keys(minion);
+            // for(var i in properties) {
+            //     var property = properties[i];
+            //     debugText += property + ": " + minion[property] + "\n";
+            // }
+
+            debugText = JSON.stringify(minion, undefined, 2);
 
             this.infoText.text(debugText);
         } else {
@@ -104,10 +109,17 @@ $class(
     },
 
     function collideMinionWithFood(minion) {
+        minion.closestFoodDistance = 9001;
         for(var i in this.food) {
-            if(this.food[i].position.distance(minion.position) < 8) {
+            var foodDistance = this.food[i].position.distance(minion.position);
+            if(foodDistance < 8) {
                 minion.eat();
                 this.food[i].position.random(this.canvas.width, this.canvas.height).floor();
+            }
+
+            if(foodDistance < minion.closestFoodDistance) {
+                minion.closestFoodDistance = foodDistance;
+                minion.closestFood = this.food[i].position;
             }
         }
     },
