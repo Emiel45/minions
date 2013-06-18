@@ -129,7 +129,11 @@ $class(
         minion.closestMinionDistance = 9001;
 
         for(var i in this.minions) {
-            var minionDistance = this.minions[i].position.distance(minion.position);
+
+            var otherMinion = this.minions[i];
+
+            if(minion != otherMinion)
+            var minionDistance = otherMinion.position.distance(minion.position);
 
             if(minionDistance < minion.closestMinionDistance) {
                 minion.closestMinionDistance = minionDistance;
