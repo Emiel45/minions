@@ -85,6 +85,7 @@ $class(
             if(minion.position.y < 0) minion.position.y = this.canvas.height - minion.position.y;
 
             this.collideMinionWithFood(minion);
+            this.collideMinionWithMinion(minion);
         }
         this.minions = newMinions;
 
@@ -120,6 +121,19 @@ $class(
             if(foodDistance < minion.closestFoodDistance) {
                 minion.closestFoodDistance = foodDistance;
                 minion.closestFood = this.food[i].position;
+            }
+        }
+    },
+
+    function collideMinionWithMinion(minion) {
+        minion.closestMinionDistance = 9001;
+
+        for(var i in this.minions) {
+            var minionDistance = this.minions[i].position.distance(minion.position);
+
+            if(minionDistance < minion.closestMinionDistance) {
+                minion.closestMinionDistance = minionDistance;
+                minion.closestMinion = this.minions[i].position;
             }
         }
     },
