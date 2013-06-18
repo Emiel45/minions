@@ -133,7 +133,7 @@ $class(
 
             if(minionDistance < minion.closestMinionDistance) {
                 minion.closestMinionDistance = minionDistance;
-                minion.closestMinion = this.minions[i].position;
+                minion.closestMinion = this.minions[i];
             }
         }
     },

@@ -98,7 +98,7 @@ $class(
             this.speedInput, 
             this.foodLevelInput, 
             this.closestMinionDistanceInput, 
-            this.closestMinionDirection
+            this.closestMinionDirectionInput
         ]);
         
         var directionOutput = outputs[0];
