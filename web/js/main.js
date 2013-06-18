@@ -8,6 +8,10 @@
     var Life = $import("Life", function() {
         var life = window.life = new Life();
         life.init();
+
+        life.renderTimer = setInterval(function() {
+        	life.render();
+        }, 1000/60);
     });
 
 })(window);

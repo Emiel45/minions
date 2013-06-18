@@ -50,7 +50,7 @@ $class(
         this.registerEvent(document,    this.onMouseUp);
         this.registerEvent(document,    this.onKeyDown);
 
-        this.renderTimer = setInterval($bind(this, this.render), 1000/60);
+        // this.renderTimer = setInterval($bind(this, this.render), 1000/60);
     },
 
     function render() {
